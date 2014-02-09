@@ -1,26 +1,83 @@
 <html>
 <head>
 	<title>Grace</title>
+	<script src="lib/js/jquery-1.11.0.js"></script>
 	<link rel="stylesheet" href="lib/css/bootstrap.css">
 	<script src="lib/js/bootstrap.js"></script>
-	<script src="lib/js/jquery-1.11.0.js"></script>
+
 	<script type="">
 		$().ready(function() {
-    		
-    		$( "#historyLink" ).click(function() {
+
+			var a = '<p>Program 1</p><p>Program 2</p><p>Program 3</p>';
+  			$('#mainContent').append(a);
+
+
+  			$( "#bs-example-navbar-collapse-1 li a" ).click(function() {
   				
   				$('#mainContent').empty();
-  				var article = '';
-  				$('#mainContent').append('<h1>History</h1>');
-  				$('#historyLink').parent().addClass('active');
-  				$('#programLink').parent().removeClass('active');
+
+  				var linkText = $(this).text();
+
+  				if(linkText == 'History') {
+  					$('#mainContent').append('History');
+
+  				}else if(linkText == "Mission"){
+  					$('#mainContent').append('Mission');
+  				}else if(linkText == "Location"){
+  					$('#mainContent').append('Location');
+  				}else if(linkText == "Program"){
+  					$('#mainContent').append('Program');
+  				}else{
+  					alert('Oops');
+  				}
+
+				$(this).parent().parent().children('li').each(function () {
+    				$(this).removeClass('active');
+				}); 
+  				$(this).parent().addClass('active');  				
+
 			});
+
+
+
+
+  			/*
+
+    		$( "#programLink" ).click(function() {
+  				$('#mainContent').empty();
+  				
+  				$('#mainContent').append(a);
+  				$('#programLink').parent().parent().children('li').each(function () {
+    				$(this).removeClass('active');
+				}); 
+  				$('#programLink').parent().addClass('active');
+			});
+    		
+    		$( "#historyLink" ).click(function() {
+  				$('#mainContent').empty();
+  				$('#mainContent').append('<h1>History</h1>');
+  				$('#historyLink').parent().parent().children('li').each(function () {
+    				$(this).removeClass('active');
+				}); 
+  				$('#historyLink').parent().addClass('active');
+			});
+
+			$( "#missionLink" ).click(function() {
+  				$('#mainContent').empty();
+  				$('#mainContent').append('<h1>Mission</h1>');
+				$('#missionLink').parent().parent().children('li').each(function () {
+    				$(this).removeClass('active');
+				});  				
+				$('#missionLink').parent().addClass('active');
+			});
+
+			*/
   		});
 	</script>
 
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
+	<nav style="background-color:#372983" class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -38,17 +95,15 @@
 	      <ul class="nav navbar-nav">
 	        <li class="active"><a id="programLink" href="#">Program</a></li>
 	        <li><a id="historyLink" href="#">History</a></li>
-	        <li class="#"><a href="#">Mission</a></li>
-	        <li><a href="#">Location</a></li>
+	        <li class="#"><a id="missionLink" href="#">Mission</a></li>
+	        <li><a id="locationLink" href="#">Location</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 
 	<div id="mainContent">
-		<p>Program 1</p>
-		<p>Program 2</p>
-		<p>Program 3</p>
+	
 	</div>
 
 </body>
